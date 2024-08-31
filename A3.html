@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" class="error"></span>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span>
+        <br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <span id="confirmPasswordError" class="error"></span>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            let valid = true;
+
+            // Clear previous error messages
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+
+            // Validate password
+            const password = document.getElementById('password').value;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.';
+                valid = false;
+            }
+
+            // Confirm password
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+                valid = false;
+            }
+
+            // Prevent form submission if invalid
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

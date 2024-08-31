@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History and Tracking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .order-list {
+            margin-bottom: 20px;
+        }
+        .order-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+        }
+        .order-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+        .order-card h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .order-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .order-card .status {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .order-card .actions {
+            margin-top: 10px;
+        }
+        .order-card .actions a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .order-details {
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+        .order-details h2 {
+            margin-top: 0;
+        }
+        .order-details .tracking-info {
+            margin-top: 20px;
+        }
+        .order-details .tracking-info p {
+            margin: 5px 0;
+        }
+        .order-details .tracking-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Account</a>
+        <a href="#">Support</a>
+        <input type="text" placeholder="Search Orders" style="padding: 5px;">
+    </div>
+
+    <div class="container">
+        <div class="order-list">
+            <div class="order-card">
+                <img src="/image/camera.jpg.jpg" alt="Product Image">
+                <div>
+                    <h3>Order #12345</h3>
+                    <p>Date: August 10, 2024</p>
+                    <p class="status">Shipped</p>
+                    <p>Total: $123.45</p>
+                    <div class="actions">
+                        <a href="#">View Details</a>
+                        <a href="#">Track Order</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <img src="https://via.placeholder.com/80" alt="Product Image">
+                <div>
+                    <h3>Order #67890</h3>
+                    <p>Date: August 15, 2024</p>
+                    <p class="status">Pending</p>
+                    <p>Total: $67.89</p>
+                    <div class="actions">
+                        <a href="#">View Details</a>
+                        <a href="#">Track Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-details">
+            <h2>Order Details: #12345</h2>
+            <p><strong>Date of Purchase:</strong> August 10, 2024</p>
+            <p><strong>Shipping Address:</strong> 123 Main St, Anytown, USA</p>
+            <p><strong>Billing Information:</strong> Visa ending in 1234</p>
+            <p><strong>Items:</strong></p>
+            <ul>
+                <li>Product A - $50.00</li>
+                <li>Product B - $73.45</li>
+            </ul>
+            <p><strong>Subtotal:</strong> $123.45</p>
+
+            <div class="tracking-info">
+                <h3>Tracking Information:</h3>
+                <p><strong>Tracking Number:</strong> <a href="#">1Z999AA10123456784</a></p>
+                <p><strong>Carrier:</strong> UPS</p>
+                <p><strong>Shipping Status:</strong> In Transit</p>
+                <p><strong>Estimated Delivery Date:</strong> August 20, 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</body>
+</html>

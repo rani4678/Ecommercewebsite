@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Zoom</title>
+    <style>
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            width: 300px; /* Adjust as needed */
+            height: 300px; /* Adjust as needed */
+            border: 2px solid hsl(256, 90%, 48%); /* Optional: for better visual */
+        }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .zoomed {
+            transform: scale(1.5); /* Adjust zoom level as needed */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-image-container">
+        <img src="/image/camera.jpg.jpg" alt="Product Image" class="product-image">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageContainer = document.querySelector('.product-image-container');
+            const image = imageContainer.querySelector('.product-image');
+
+            // Handle mouse enter to zoom in
+            imageContainer.addEventListener('mouseenter', () => {
+                image.classList.add('zoomed');
+                console.log('Mouse entered the image');
+            });
+
+            // Handle mouse leave to zoom out
+            imageContainer.addEventListener('mouseleave', () => {
+                image.classList.remove('zoomed');
+                console.log('Mouse left the image');
+            });
+
+            // Optional: Handle mouse movement over the image
+            imageContainer.addEventListener('mousemove', (event) => {
+                const { left, top, width, height } = imageContainer.getBoundingClientRect();
+                const x = event.clientX - left;
+                const y = event.clientY - top;
+
+                console.log(`Mouse X: ${x}, Mouse Y: ${y}`);
+                // You can use this information for additional interactions if needed
+            });
+        });
+    </script>
+</body>
+</html>

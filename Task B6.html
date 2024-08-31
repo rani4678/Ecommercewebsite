@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Secure Checkout</h1>
+    <form id="payment-form">
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+        <button id="submit">Pay</button>
+        <div id="error-message" role="alert"></div>
+    </form>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('your-publishable-key-here'); // Replace with your Stripe publishable key
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        const form = document.getElementById('payment-form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const {token, error} = await stripe.createToken(card);
+
+            if (error) {
+                // Display error.message in your UI
+                errorMessage.textContent = error.message;
+            } else {
+                // Send the token to your server
+                const response = await fetch('/charge', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token.id })
+                });
+
+                const result = await response.json();
+
+                if (result.error) {
+                    errorMessage.textContent = result.error;
+                } else {
+                    // Payment successful
+                    alert('Payment successful!');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

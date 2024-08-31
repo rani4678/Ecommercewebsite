@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        .cart { margin-top: 20px; }
+        .cart-item { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart Example</h1>
+
+    <h2>Products</h2>
+    <div id="product-list">
+        <div class="product">
+            <span>Product 1 - $10</span>
+            <button onclick="addToCart(1, 'Product 1', 10)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <span>Product 2 - $20</span>
+            <button onclick="addToCart(2, 'Product 2', 20)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        function addToCart(id, name, price) {
+            fetch('cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, name, price, action: 'add' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    loadCart();
+                } else {
+                    alert('Error adding item to cart');
+                }
+            });
+        }
+
+        function loadCart() {
+            fetch('cart.php?action=view')
+                .then(response => response.json())
+                .then(data => {
+                    const cartItems = document.getElementById('cart-items');
+                    cartItems.innerHTML = '';
+                    data.cart.forEach(item => {
+                        cartItems.innerHTML += `<div class="cart-item">${item.name} - $${item.price} <button onclick="removeFromCart(${item.id})">Remove</button></div>`;
+                    });
+                });
+        }
+
+        function removeFromCart(id) {
+            fetch('cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, action: 'remove' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    loadCart();
+                } else {
+                    alert('Error removing item from cart');
+                }
+            });
+        }
+
+        function checkout() {
+            alert('Proceeding to checkout!');
+        }
+
+        // Load cart items on page load
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

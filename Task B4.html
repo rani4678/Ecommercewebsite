@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Animation</title>
+    <style>
+        /* Basic styles for the button */
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green background */
+            color: rgb(238, 19, 89);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Animation styles */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulse effect */
+        .pulse {
+            animation: pulse 0.6s ease-out;
+        }
+
+        /* Bounce effect */
+        .bounce {
+            animation: bounce 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <button id="add-to-cart" class="btn">Add to Cart</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('add-to-cart');
+
+            button.addEventListener('click', () => {
+                // Remove any existing animation class
+                button.classList.remove('pulse', 'bounce');
+                
+                // Add the animation class
+                button.classList.add('pulse'); // Use 'bounce' for bounce effect
+
+                // Remove the animation class after the animation ends
+                button.addEventListener('animationend', () => {
+                    button.classList.remove('pulse', 'bounce');
+                }, { once: true });
+            });
+        });
+    </script>
+</body>
+</html>

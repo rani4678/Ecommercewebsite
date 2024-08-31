@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .product, .review { margin-bottom: 10px; }
+        .product { border: 1px solid #ddd; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Product Store</h1>
+
+    <!-- Filter Products -->
+    <h2>Filter Products</h2>
+    <label for="category">Category:</label>
+    <select id="category">
+        <option value="">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Appliances">Appliances</option>
+    </select>
+    <button onclick="filterProducts()">Filter</button>
+
+    <!-- Sort Products -->
+    <h2>Sort Products</h2>
+    <label for="sortBy">Sort By:</label>
+    <select id="sortBy">
+        <option value="price">Price</option>
+        <option value="rating">Rating</option>
+    </select>
+    <button onclick="sortProducts()">Sort</button>
+
+    <!-- Product List -->
+    <h2>Products</h2>
+    <div id="productList"></div>
+
+    <!-- Add Review -->
+    <h2>Add Review</h2>
+    <label for="reviewProductId">Product ID:</label>
+    <input type="number" id="reviewProductId">
+    <br>
+    <label for="userName">Your Name:</label>
+    <input type="text" id="userName">
+    <br>
+    <label for="reviewRating">Rating (1-5):</label>
+    <input type="number" id="reviewRating" min="1" max="5">
+    <br>
+    <label for="reviewComment">Comment:</label>
+    <textarea id="reviewComment"></textarea>
+    <br>
+    <button onclick="addReview()">Add Review</button>
+
+    <!-- Reviews Section -->
+    <h2>Reviews</h2>
+    <div id="reviewsList"></div>
+
+    <script>
+        // Sample data
+        let products = [
+            { id: 1, name: "Laptop", category: "Electronics", price: 999.99, rating: 4.5 },
+            { id: 2, name: "Smartphone", category: "Electronics", price: 499.99, rating: 4.0 },
+            { id: 3, name: "Coffee Maker", category: "Appliances", price: 89.99, rating: 4.8 }
+        ];
+
+        let reviews = [];
+
+        function displayProducts(productsToDisplay) {
+            const productList = document.getElementById('productList');
+            productList.innerHTML = '';
+            productsToDisplay.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>Category: ${product.category}</p>
+                    <p>Price: $${product.price.toFixed(2)}</p>
+                    <p>Rating: ${product.rating}</p>
+                    <button onclick="showReviews(${product.id})">Show Reviews</button>
+                    <div id="reviews-${product.id}"></div>
+                `;
+                productList.appendChild(productDiv);
+            });
+        }
+
+        function displayReviews(productId) {
+            const reviewsList = document.getElementById(`reviews-${productId}`);
+            reviewsList.innerHTML = '';
+            const productReviews = reviews.filter(review => review.productId === productId);
+            productReviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'review';
+                reviewDiv.innerHTML = `
+                    <p><strong>${review.userName}</strong> (${review.rating}/5): ${review.comment}</p>
+                `;
+                reviewsList.appendChild(reviewDiv);
+            });
+        }
+
+        function filterProducts() {
+            const category = document.getElementById('category').value;
+            const filteredProducts = products.filter(product => !category || product.category === category);
+            displayProducts(filteredProducts);
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortBy').value;
+            const sortedProducts = [...products].sort((a, b) => a[sortBy] - b[sortBy]);
+            displayProducts(sortedProducts);
+        }
+
+        function addReview() {
+            const productId = parseInt(document.getElementById('reviewProductId').value);
+            const userName = document.getElementById('userName').value;
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const comment = document.getElementById('reviewComment').value;
+
+            if (!productId || !userName || !rating || !comment) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            reviews.push({ productId, userName, rating, comment });
+            displayReviews(productId);
+        }
+
+        function showReviews(productId) {
+            displayReviews(productId);
+        }
+
+        // Initial display
+        displayProducts(products);
+    </script>
+</body>
+</html>

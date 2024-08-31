@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY COMPANY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+            < !DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Company</title><style>body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            nav ul li {
+                display: inline;
+                margin: 0 1rem;
+            }
+
+            nav ul li a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .section {
+                display: none;
+            }
+
+            .active {
+                display: block;
+            }
+
+            .product-details img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .product-info,
+            .contact-form {
+                text-align: center;
+            }
+
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 1rem;
+                position: fixed;
+                width: 100%;
+                bottom: 0;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            form label {
+                margin-top: 1rem;
+            }
+
+            form input,
+            form textarea {
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            form button {
+                padding: 0.5rem 1rem;
+                background-color: #333;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+            form button:hover {
+                background-color: #555;
+            }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>My Company</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#about" onclick="showSection('about')">About Us</a></li>
+                <li><a href="#products" onclick="showSection('products')">Products</a></li>
+                <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section active">
+            <h2>Welcome to My Company</h2>
+            <p>Your one-stop shop for quality products and excellent service.</p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>Welcome to My Company. We specialize in providing high-quality products that meet the needs of our
+                customers. Our mission is to deliver excellence and innovation in everything we do.</p>
+            <p>Founded in [Year], we have grown to become a leader in our industry, thanks to our dedicated team and
+                loyal customers.</p>
+        </section>
+
+        <section id="products" class="section">
+            <h2>Product Name</h2>
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="/image/camera.jpg.jpg" width="300px" height="200px" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <p><strong>Description:</strong> This is a brief description of the product.</p>
+                    <p><strong>Price:</strong> $500000</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="contact-form">
+                <form action="submit_form.php" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Company</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id === id) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+box-sizing: border-box;
+}
+
+header {
+background-color: #333;
+color: #fff;
+padding: 1rem;
+text-align: center;
+}
+
+nav ul {
+list-style-type: none;
+padding: 0;
+}
+
+nav ul li {
+display: inline;
+margin: 0 1rem;
+}
+
+nav ul li a {
+color: #fff;
+text-decoration: none;
+}
+
+main {
+padding: 1rem;
+}
+
+.section {
+display: none;
+}
+
+.active {
+display: block;
+}
+
+.product-details img {
+max-width: 100%;
+height: auto;
+}
+
+.product-info, .contact-form {
+text-align: center;
+}
+
+footer {
+background-color: #333;
+color: #fff;
+text-align: center;
+padding: 1rem;
+position: fixed;
+width: 100%;
+bottom: 0;
+}
+
+form {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+form label {
+margin-top: 1rem;
+}
+
+form input, form textarea {
+margin-bottom: 1rem;
+padding: 0.5rem;
+width: 100%;
+max-width: 500px;
+}
+
+form button {
+padding: 0.5rem 1rem;
+background-color: #333;
+color: #fff;
+border: none;
+cursor: pointer;
+}
+
+form button:hover {
+background-color: #555;
+}
+</style>
+</head>
+
+<body>
+    <header>
+        <h1>My Company</h1>
+        <nav>
+            <ul>
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#about" onclick="showSection('about')">About Us</a></li>
+                <li><a href="#products" onclick="showSection('products')">Products</a></li>
+                <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section active">
+            <h2>Welcome to My Company</h2>
+            <p>Your one-stop shop for quality products and excellent service.</p>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>Welcome to My Company. We specialize in providing high-quality products that meet the needs of our
+                customers. Our mission is to deliver excellence and innovation in everything we do.</p>
+            <p>Founded in [Year], we have grown to become a leader in our industry, thanks to our dedicated team and
+                loyal customers.</p>
+        </section>
+
+        <section id="products" class="section">
+            <h2>Product Name</h2>
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="/image/phone.jpg.jpg" width="300px" height="200px" alt="Product Image">
+                </div>
+                <div class="product-info">
+                    <p><strong>Description:</strong> This is a brief description of the product.</p>
+                    <p><strong>Price:</strong> $150000</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="contact-form">
+                <form action="submit_form.php" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Company</p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id === id) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
